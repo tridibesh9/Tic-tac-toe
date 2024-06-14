@@ -1,0 +1,96 @@
+body{
+    background-color: #7469B6;
+}
+.mother_container{
+    display: flex;
+    padding: 2px;
+    gap: 10px;
+
+}
+.container{
+    width: 60%;
+    height: 100%;
+    display: grid;
+    height: 100vh;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    background-color:#AD88C6;
+}
+.box{
+    background-color: #E1AFD1;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.clicked_animation{
+    background-color: #FFE6E6;
+    height: 102%;
+    width: 102%;
+}
+.big{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    font-weight: bolder;
+    color:#7469B6;
+    font-family: poppins;
+
+}
+.side_bar{
+    background-color: azure;
+    width: 40%;
+    background-color: #AD88C6;
+    
+}
+.heading_main{
+    font-size: 3rem;
+    font-weight: bolder;
+    text-align: center;
+    color: #E1AFD1;
+    font-family: poppins;
+    background-color: #7469B6;
+    border-radius: 10px;
+}
+.button_newgame{
+    text-align: center;
+    background-color: #E1AFD1;
+    color: #AD88C6;
+    border: #FFE6E6;
+    border-radius: 10px;
+    padding: 10px;
+    font-family: poppins;
+    font-weight: bold;
+}
+.history{
+    overflow:auto;
+}
+.edit_options{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+}
+#Leaderboard{
+    display: flex;
+    font-family: poppins;
+    color: #FFE6E6;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+}
+.Count{
+    display: flex;
+    justify-content: space-evenly;
+}
+.score{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: poppins;
+    font-weight: bold;
+    color: #FFE6E6;
+    font-size: 2rem;
+}
