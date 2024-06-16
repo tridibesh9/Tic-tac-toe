@@ -9,11 +9,15 @@
 <body>
     <div class="modal2 hide">
         <div class="modalContent2">
-            <div>Do u want to reset this current game ?</div>
-            <button type="button" class="validate yes">
-                yes
-            </button>
-            <button type="button" class="validate no">No</button>
+            <div class="reset_notif">Do u want to reset this current game ?</div>
+            <div class="validate_options">
+                <button type="button" class="validate yes">
+                    yes
+                </button>
+                <button type="button" class="validate no">
+                    No
+                </button>
+            </div>
         </div>
     </div>
     <div class="modal hide">
@@ -29,6 +33,12 @@
                     <p class="big">X</p>
                 </div>
                 <button type="button" class="button_newgame">NEW GAME!</button>
+                <select  id="Mobility" name="Mobility">
+                    <option selected="">3x3</option>
+                    <option>4x4</option>
+                    <option>5x5</option>
+                    <option>6x6</option>
+                </select>
             </div>
             <div class="history">
                 <div class="Count">
