@@ -29,7 +29,7 @@ body{
     height: 102%;
     width: 102%;
 }
-.big{
+.big,.turn_text{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -71,7 +71,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2px;
+    padding: 0px;
 }
 #Leaderboard{
     display: flex;
@@ -93,4 +93,50 @@ body{
     font-weight: bold;
     color: #FFE6E6;
     font-size: 2rem;
+}
+.modal,.modal2{
+    z-index: 1;
+    position: fixed;
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4); 
+}
+.modal_content,.modalContent2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFE6E6;
+    width: 40%;
+    height: 40%;
+}
+.hide{
+    display: none;
+}
+.show{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 40%;
+    width: 60%;
+    height: 100%;
+}
+.button_newgame1{
+    text-align: center;
+    background-color: #E1AFD1;
+    color: #AD88C6;
+    border: #FFE6E6;
+    border-radius: 10px;
+    padding: 10px;
+    font-family: poppins;
+    font-weight: bold;
+}
+.turn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.modal2{
+    z-index: 2;
+}
+.modalContent2>div{
+    display: block;
 }
