@@ -26,6 +26,11 @@ var text = "<div class='big'>X</div>"
 var text2 = "<div class='big'>O</div>"
 var text3 = "<div class='big'>Its a Draw</div>" 
 var win = 0;
+
+
+
+
+
 function editBoxes(ids){
      var box = document.getElementById(ids)
      if(box.classList.contains("clicked")){
@@ -52,6 +57,7 @@ function editBoxes(ids){
         win = 1;
         add_history(text2);
         update_score(text2);
+        add_winner_text();
         display_modal(text2);
      }
      else if(check_draw()){
@@ -63,6 +69,11 @@ function editBoxes(ids){
     },200);
     editTurn(text);
 }
+
+
+
+
+
 function check_win(){
     var k;
     for(var i = 0;i<3;i++){
@@ -113,7 +124,12 @@ function check_win(){
     
     return false;
  }
- function check_draw(){
+
+
+
+
+
+function check_draw(){
     var r = 1
     for(var i = 0;i<3;i++){
         for(var j = 0;j<3;j++){
@@ -128,7 +144,12 @@ function check_win(){
     else{
         return false;
     }
- }
+}
+
+
+
+
+
  function add_history(winner){
     const div_new = document.createElement('div');
     div_new.className = "new_history";
@@ -136,6 +157,10 @@ function check_win(){
     div_new.innerHTML = d;
     document.querySelector(".history").appendChild(div_new);
  }
+
+
+
+
  function clear_boxes(){
     win = 0;
     
@@ -159,7 +184,14 @@ function check_win(){
     }
     var winner_temp = document.querySelector(".winner_text");
     winner_temp.parentNode.removeChild(winner_temp);
+    var winner_text =  document.querySelector(".modal_content>div");
+    winner_text.parentNode.removeChild(winner_text);
  }
+
+
+
+
+
  function update_score(winner){
     if(winner == "<div class='big'>X</div>"){
         x_score+=1;
@@ -170,6 +202,10 @@ function check_win(){
         document.querySelector(".O_score").innerText = o_score;
     }
  }
+
+
+
+
  function display_modal(winner){
     var modalContent = document.querySelector(".modal_content");
     var new_div = document.createElement("div");
@@ -181,6 +217,12 @@ function check_win(){
     modal.classList.remove("hide");
     modal.classList.add("show");
  }
+
+
+
+
+
+
  function editTurn(turns){
     var turn = document.querySelector(".turn .big");
     turn.parentNode.removeChild(turn);
@@ -190,11 +232,21 @@ function check_win(){
     turn_box.appendChild(g);
 
  }
+
+
+
+
+
+
  function check_user(){
     var modal2 = document.querySelector(".modal2");
     modal2.classList.remove("hide");
     modal2.classList.add("show");
  }
+
+
+
+
  var yes = document.querySelector(".yes");
  yes.addEventListener("click",function(){
     
@@ -205,8 +257,30 @@ function check_win(){
  no.addEventListener("click",function(){
     clearModal2();
  })
+
+
+
+
+
+
+
  function clearModal2(){
     var modal2 = document.querySelector(".modal2");
     modal2.classList.remove("show");
     modal2.classList.add("hide");
  }
+
+
+
+
+
+
+ function add_winner_text(){
+    var d = document.querySelector(".modal_content");
+    var winnerText = document.createElement("div");
+    winnerText.classList.add("big");
+    winnerText.innerText = "Wineer : ";
+    d.appendChild(winnerText);
+ }
+
+ 
