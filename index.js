@@ -16,12 +16,15 @@ for(var i = 0;i<boxes.length;i++){
         editBoxes(this.id)
     });
 }
-var new_game = document.querySelector(".button_newgame");
-new_game.addEventListener("click",function(){
-    clear_boxes();
-});
+var new_game = document.querySelectorAll(".button_newgame");
+for(var i = 0;i<new_game.length;i++){
+    new_game[i].addEventListener("click",function(){
+        check_user();
+    });
+}
 var text = "<div class='big'>X</div>"
 var text2 = "<div class='big'>O</div>"
+var text3 = "<div class='big'>Its a Draw</div>" 
 var win = 0;
 function editBoxes(ids){
      var box = document.getElementById(ids)
@@ -46,18 +49,19 @@ function editBoxes(ids){
      text = text2;
      text2 = temp;
      if(check_win()){
-        alert("player "+text2+"wins");
         win = 1;
         add_history(text2);
         update_score(text2);
+        display_modal(text2);
      }
      else if(check_draw()){
         win = 1;
-        alert("Its a Draw,Try New Game");
+        display_modal(text3);
      }
     setTimeout(function(){
          box.classList.remove("clicked_animation")
     },200);
+    editTurn(text);
 }
 function check_win(){
     var k;
@@ -148,6 +152,13 @@ function check_win(){
             board[i][j] = -1;
         }
     }
+    var modal = document.querySelector(".modal");
+    if(modal.classList.contains("show")){
+        modal.classList.remove("show");
+        modal.classList.add("hide");
+    }
+    var winner_temp = document.querySelector(".winner_text");
+    winner_temp.parentNode.removeChild(winner_temp);
  }
  function update_score(winner){
     if(winner == "<div class='big'>X</div>"){
@@ -158,4 +169,44 @@ function check_win(){
         o_score+=1;
         document.querySelector(".O_score").innerText = o_score;
     }
+ }
+ function display_modal(winner){
+    var modalContent = document.querySelector(".modal_content");
+    var new_div = document.createElement("div");
+    new_div.innerHTML = winner;
+    new_div.classList.add("winner_text");
+    modalContent.appendChild(new_div);
+    
+    var modal = document.querySelector(".modal");
+    modal.classList.remove("hide");
+    modal.classList.add("show");
+ }
+ function editTurn(turns){
+    var turn = document.querySelector(".turn .big");
+    turn.parentNode.removeChild(turn);
+    var g = document.createElement("div");
+    var turn_box = document.querySelector(".turn");
+    g.innerHTML = turns;
+    turn_box.appendChild(g);
+
+ }
+ function check_user(){
+    var modal2 = document.querySelector(".modal2");
+    modal2.classList.remove("hide");
+    modal2.classList.add("show");
+ }
+ var yes = document.querySelector(".yes");
+ yes.addEventListener("click",function(){
+    
+    clearModal2();
+    clear_boxes();
+ })
+ var no = document.querySelector(".no");
+ no.addEventListener("click",function(){
+    clearModal2();
+ })
+ function clearModal2(){
+    var modal2 = document.querySelector(".modal2");
+    modal2.classList.remove("show");
+    modal2.classList.add("hide");
  }
