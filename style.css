@@ -71,7 +71,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0px;
+    gap: 2rem;
 }
 #Leaderboard{
     display: flex;
@@ -104,7 +104,9 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     background-color: #FFE6E6;
+    gap: 10px;
     width: 40%;
     height: 40%;
 }
@@ -137,6 +139,28 @@ body{
 .modal2{
     z-index: 2;
 }
-.modalContent2>div{
-    display: block;
+
+.validate{
+    background-color: #7469B6;
+    color: #E1AFD1;
+    border: none;
+    font-family: poppins;
+}
+.recent_notif{
+    color: #AD88C6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.validate_options{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+select{
+    width: 3rem;
+    background-color: #7469B6;
+    color: #E1AFD1;
+    border-color: #FFE6E6;
+    font-family: poppins;
 }
