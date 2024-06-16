@@ -1,32 +1,52 @@
 
 var x_score = 0;
 var o_score = 0;
-const board = []
-for(var i = 0;i<3;i++){
+var board = [];
+var n = 3;
+check_click();
+for(var i = 0;i<n;i++){
     var temp = [];
-    for(var j = 0;j<3;j++){
+    for(var j = 0;j<n;j++){
         temp.push(-1);
     }
     board.push(temp);
 }
 
- var boxes = document.querySelectorAll(".box")
-for(var i = 0;i<boxes.length;i++){
-    boxes[i].addEventListener("click",function(){
-        editBoxes(this.id)
-    });
-}
+
+
+
+
+
 var new_game = document.querySelectorAll(".button_newgame");
 for(var i = 0;i<new_game.length;i++){
     new_game[i].addEventListener("click",function(){
         check_user();
     });
 }
+var new_value = document.querySelector("#options");
+new_value.addEventListener("click",function(){
+    n = getValue();
+    set_grid(n);
+})
+
 var text = "<div class='big'>X</div>"
 var text2 = "<div class='big'>O</div>"
 var text3 = "<div class='big'>Its a Draw</div>" 
 var win = 0;
 
+
+
+
+
+
+function check_click(){
+    var boxes = document.querySelectorAll(".box")
+    for(var i = 0;i<boxes.length;i++){
+        boxes[i].addEventListener("click",function(){
+            editBoxes(this.id)
+        });
+    }
+}
 
 
 
@@ -45,10 +65,10 @@ function editBoxes(ids){
      box.innerHTML = text;
      console.log(box.id);
      if(text === "<div class='big'>X</div>"){
-        board[Math.floor(box.id/3)][box.id%3] = 0;
+        board[Math.floor(box.id/n)][box.id%n] = 0;
      }
      else{
-        board[Math.floor(box.id/3)][box.id%3] = 1;
+        board[Math.floor(box.id/n)][box.id%n] = 1;
      }
      var temp = text;
      text = text2;
@@ -76,10 +96,10 @@ function editBoxes(ids){
 
 function check_win(){
     var k;
-    for(var i = 0;i<3;i++){
+    for(var i = 0;i<n;i++){
         k = 1;
-        for(var j = 0;j<3;j++){
-            if(board[i][j] != board[i][(j+1+3)%3] || board[i][j] == -1){
+        for(var j = 0;j<n;j++){
+            if(board[i][j] != board[i][(j+1+n)%n] || board[i][j] == -1){
                 k = 0
             }
             console.log(board[i][j]);
@@ -89,10 +109,10 @@ function check_win(){
             return true;
         }
     }
-    for(var i = 0;i<3;i++){
+    for(var i = 0;i<n;i++){
         k = 1;
-        for(var j = 0;j<3;j++){
-            if(board[j][i] != board[(j+1+3)%3][i] || board[j][i] == -1){
+        for(var j = 0;j<n;j++){
+            if(board[j][i] != board[(j+1+n)%n][i] || board[j][i] == -1){
                 k = 0
             }
             console.log(board[i][j]);
@@ -103,8 +123,8 @@ function check_win(){
         }
     }
     k = 1;
-    for(var i = 0;i<3;i++){
-        if(board[i][i] != board[(i+1+3)%3][(i+1+3)%3] || board[i][i] == -1){
+    for(var i = 0;i<n;i++){
+        if(board[i][i] != board[(i+1+n)%n][(i+1+n)%n] || board[i][i] == -1){
             k = 0;
         }
     }
@@ -113,7 +133,7 @@ function check_win(){
     }
     k = 1;
     for(var i = 0;i<3;i++){
-        if(board[i][3-1-i] != board[(i+1)%3][3-1-(i+1)%3]|| board[i][3-1-i] == -1){
+        if(board[i][n-1-i] != board[(i+1)%n][n-1-(i+1)%n]|| board[i][n-1-i] == -1){
             k = 0
         }
     }
@@ -131,8 +151,8 @@ function check_win(){
 
 function check_draw(){
     var r = 1
-    for(var i = 0;i<3;i++){
-        for(var j = 0;j<3;j++){
+    for(var i = 0;i<n;i++){
+        for(var j = 0;j<n;j++){
             if(board[i][j] == -1){
                 r = 0;
             }
@@ -164,7 +184,7 @@ function check_draw(){
  function clear_boxes(){
     win = 0;
     
-    for(var i = 0;i<9;i++){
+    for(var i = 0;i<n*n;i++){
         var id_s = i;
         var box_ext = document.getElementById(id_s.toString());
         if(box_ext.classList.contains("clicked")){
@@ -172,8 +192,8 @@ function check_draw(){
             box_ext.removeChild(box_ext.children[0]);
         }
     }
-    for(var i = 0;i<3;i++){
-        for(var j = 0;j<3;j++){
+    for(var i = 0;i<n;i++){
+        for(var j = 0;j<n;j++){
             board[i][j] = -1;
         }
     }
@@ -284,3 +304,49 @@ function check_draw(){
  }
 
  
+
+ function getValue(){
+    var getValue = document.querySelector("#options");
+    var value = getValue.value;
+    return value;
+ }
+
+
+
+
+
+
+
+function set_grid(k){
+    n = k;
+    console.log("Suhana");
+    var container2 = document.querySelector(".container");
+    container2.parentNode.removeChild(container2);
+    var mother_container = document.querySelector(".mother_container");
+    var newContainer = document.createElement("div");
+    for(var i = 0;i<n*n;i++){
+        var new_div = document.createElement("div");
+        new_div.classList.add("box");
+        new_div.id = i.toString();
+        newContainer.appendChild(new_div);
+    }
+    newContainer.classList.add("container");
+    var new_size = " 1fr";
+    console.log(n);
+    for(var i = 0;i<(n-1);i++){
+        new_size+=" 1fr";
+    }
+    console.log(new_size);
+    newContainer.style.gridTemplateColumns = new_size;
+    newContainer.style.gridTemplateRows = new_size;
+    mother_container.appendChild(newContainer);
+    board = []
+    for(var i = 0;i<n;i++){
+        var temp = [];
+        for(var j = 0;j<n;j++){
+            temp.push(-1);
+        }
+        board.push(temp);
+    }
+    check_click();
+}
