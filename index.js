@@ -133,7 +133,7 @@ function check_win(){
     }
     k = 1;
     for(var i = 0;i<n;i++){
-        if(board[i][n-1-i] != board[(i+1)%n][n-1-(i+1)%n]|| board[i][n-1-i] == -1){
+        if(board[i][n-1-i] != board[(i+1+n)%n][n-1-(i+1+n)%n]|| board[i][n-1-i] == -1){
             k = 0
         }
     }
